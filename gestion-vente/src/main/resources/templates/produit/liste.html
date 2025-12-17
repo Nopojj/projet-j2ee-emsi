@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::#main-content})}">
+
+<head>
+    <title>Liste des Produits - AsusTec</title>
+</head>
+
+<body>
+    <div id="main-content" class="container mt-5">
+        <h1 class="text-center mb-5 text-primary">📦 Produits disponibles</h1>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Code</th>
+                        <th>Nom du produit</th>
+                        <th>Prix (DH)</th>
+                        <th>Quantité en stock</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="produit : ${produits}">
+                        <td th:text="${produit.codePdt}"></td>
+                        <td th:text="${produit.nomPdt}"></td>
+                        <td th:text="${produit.prixPdt}"></td>
+                        <td th:text="${produit.qtePdt}"></td>
+                        <td>
+							<a th:href="@{/ventes/commandes/formulaire(codePdt=${produit.codePdt})}"
+							   class="btn btn-success btn-sm">
+							    🛒 Commander
+							</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${#lists.isEmpty(produits)}" class="alert alert-warning text-center mt-4">
+            <strong>Aucun produit disponible pour le moment.</strong>
+        </div>
+    </div>
+</body>
+</html>

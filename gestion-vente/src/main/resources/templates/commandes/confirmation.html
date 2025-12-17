@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::title}, ~{::#main-content})}">
+<head>
+    <title>Confirmation de commande - AsusTec</title>
+</head>
+<body>
+    <div id="main-content" class="container mt-5">
+        <h1 class="text-center mb-5 text-primary">Confirmation de commande</h1>
+
+        <div th:if="${success}" class="alert alert-success text-center">
+            <strong th:text="${message}"></strong>
+        </div>
+        <div th:if="${not success}" class="alert alert-danger text-center">
+            <strong th:text="${message}"></strong>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title">Détails de la commande</h3>
+                <p><strong>N° Commande :</strong> <span th:text="${commande.codeCmd}"></span></p>
+                <p><strong>Client :</strong> <span th:text="${commande.client}"></span></p>
+                <p><strong>Produit :</strong> <span th:text="${nomProduit}"></span></p>
+                <p><strong>Quantité :</strong> <span th:text="${commande.qteCmd}"></span></p>
+                <p><strong>Prix unitaire :</strong> <span th:text="${prixUnitaire}"></span> DH</p>
+                <p><strong>Total :</strong> <span th:text="${commande.qteCmd * prixUnitaire}"></span> DH</p>
+                <p><strong>Date :</strong> <span th:text="${#temporals.format(commande.dateCmd, 'dd/MM/yyyy HH:mm')}"></span></p>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a th:href="@{/ventes/commandes/{id}/facture(id=${commande.codeCmd})}"
+               target="_blank"
+               class="btn btn-primary btn-lg">
+                📄 Télécharger la facture PDF
+            </a>
+            <br/><br/>
+            <a th:href="@{/ventes}" class="btn btn-secondary btn-lg">Retour à la liste des produits</a>
+        </div>
+    </div>
+</body>
+</html>

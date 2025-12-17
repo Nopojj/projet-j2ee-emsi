@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - AsusTec</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #2c3e50, #3498db);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        
+        .login-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .login-header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .login-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .login-body {
+            padding: 40px 35px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .form-control {
+            border: 2px solid #ecf0f1;
+            padding: 12px 15px;
+            font-size: 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .btn-login {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-top: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+        }
+        
+        .alert {
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 14px;
+            border: none;
+        }
+        
+        .alert-danger {
+            background: #ffe5e5;
+            color: #c0392b;
+        }
+        
+        .alert-success {
+            background: #d5f4e6;
+            color: #27ae60;
+        }
+        
+        .login-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+        
+        .test-info {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        
+        .test-info strong {
+            color: #856404;
+            font-size: 13px;
+        }
+        
+        .test-info code {
+            background: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>AsusTec</h1>
+            <p>Système de Gestion Commerciale</p>
+        </div>
+        
+        <div class="login-body">
+
+            
+            <!-- Formulaire de connexion -->
+            <form th:action="@{/perform_login}" method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nom d'utilisateur</label>
+                    <input type="text" 
+                           class="form-control" 
+                           id="username" 
+                           name="username" 
+                           placeholder="Entrez votre nom d'utilisateur"
+                           required 
+                           autofocus>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" 
+                           class="form-control" 
+                           id="password" 
+                           name="password" 
+                           placeholder="Entrez votre mot de passe"
+                           required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-login w-100">
+                    Se connecter
+                </button>
+            </form>
+            
+        </div>
+        
+        <div class="login-footer">
+            © 2025 AsusTec • Gestion des Points de Vente
+        </div>
+    </div>
+</body>
+</html>

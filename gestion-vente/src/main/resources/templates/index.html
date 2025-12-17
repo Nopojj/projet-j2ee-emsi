@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Accueil</title>
+</head>
+<body>
+<section>
+    <div class="text-center mt-5">
+        <h1>Bienvenue dans le système de gestion des ventes</h1>
+        <p class="lead">Choisissez une action :</p>
+        <a href="/produits" class="btn btn-primary btn-lg m-3">📋 Voir les produits</a>
+        <a href="/commandes/liste" class="btn btn-secondary btn-lg m-3">📦 Mes commandes</a>
+    </div>
+</section>
+</body>
+</html>

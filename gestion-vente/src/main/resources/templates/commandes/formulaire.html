@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::#main-content})}">
+
+<head>
+    <title>Ajouter une commande - AsusTec</title>
+</head>
+
+<body>
+    <div id="main-content" class="container mt-5">
+        <h1 class="text-center mb-5 text-primary">🛒 Passer une commande</h1>
+
+        <!-- AJOUTE ÇA ICI : message d'erreur si problème de chargement du produit -->
+        <div th:if="${erreur}" class="alert alert-danger text-center mb-4">
+            <strong th:text="${erreur}"></strong>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <p><strong>Produit :</strong> <span th:text="${produit.nomPdt}"></span></p>
+                <p><strong>Code :</strong> <span th:text="${produit.codePdt}"></span></p>
+                <p><strong>Prix unitaire :</strong> <span th:text="${produit.prixPdt}"></span> DH</p>
+                <p><strong>Stock disponible :</strong> <span th:text="${produit.qtePdt}"></span></p>
+
+                <form th:action="@{/ventes/commander}" method="post">
+                    <input type="hidden" name="codePdt" th:value="${produit.codePdt}" />
+                    <div class="mb-3">
+                        <label class="form-label">Client</label>
+                        <input type="text" name="client" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Quantité</label>
+                        <input type="number" name="qteCmd" min="1" th:max="${produit.qtePdt}" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn btn-success">Confirmer la commande</button>
+                    <a th:href="@{/ventes}" class="btn btn-secondary ms-2">Annuler</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
